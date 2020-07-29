@@ -1,5 +1,7 @@
 # RTP/RTCP stack for Go
 
+> Updated for multicast
+
 This Go package implements a RTP/RTCP stack for Go. The package is a
 sub-package of the standard Go _net_ package and uses standard _net_ package
 functions.

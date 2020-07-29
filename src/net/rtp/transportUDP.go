@@ -51,11 +51,11 @@ func NewTransportUDP(addr *net.IPAddr, port int, zone string) (*TransportUDP, er
 // to this transport.
 //
 func (tp *TransportUDP) ListenOnTransports() (err error) {
-	tp.dataConn, err = net.ListenUDP(tp.localAddrRtp.Network(), tp.localAddrRtp)
+	tp.dataConn, err = net.ListenMulticastUDP(tp.localAddrRtp.Network(), nil, tp.localAddrRtp)
 	if err != nil {
 		return
 	}
-	tp.ctrlConn, err = net.ListenUDP(tp.localAddrRtcp.Network(), tp.localAddrRtcp)
+	tp.ctrlConn, err = net.ListenMulticastUDP(tp.localAddrRtp.Network(), nil, tp.localAddrRtcp)
 	if err != nil {
 		tp.dataConn.Close()
 		tp.dataConn = nil
